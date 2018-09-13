@@ -1,0 +1,42 @@
+{
+  "name": "webstills",
+  "version": "1.0.0",
+  "description": "fetch webcam still images to local disk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webcam"
+  ],
+  "author": "Jim Tittsler <jimt@onjapan.net>",
+  "license": "MIT",
+  "dependencies": {
+    "getopts": "^2.2.1",
+    "got": "^9.2.1"
+  },
+  "devDependencies": {
+    "@types/got": "^8.3.3",
+    "typescript": "^3.0.3",
+    "typescript-eslint-parser": "^18.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+        "browser": false,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parser": "typescript-eslint-parser",
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "rules": {
+        "no-console": "off"
+    }
+  }
+}
