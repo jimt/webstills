@@ -42,6 +42,13 @@ function writeImage(filename, data) {
   });
 }
 
+function writeDup(filename, data) {
+  let dupstr = ("0000" + dup).slice(-5);
+  console.log(`Write ${filename}.${dupstr}`);
+  writeImage(`${filename}.${dupstr}`, data);
+  dup++;
+}
+
 async function fetcher() {
   let gotOptions = {
     retries: 0,
@@ -59,17 +66,22 @@ async function fetcher() {
   }
 
   try {
-    start = Date.now();
-    const response = await got(url, gotOptions);
-    // FIXME should probably ping pong rather than copy
-    lastImage = response.body.slice(0);
-    filename = start;
-    dup = 0;
-    writeImage(filename, response.body);
+    if (start) {
+      writeDup(start, lastImage);
+    } else {
+      start = Date.now();
+      const response = await got(url, gotOptions);
+      // FIXME should probably ping pong rather than copy
+      lastImage = response.body.slice(0);
+      filename = start;
+      start = 0;
+      dup = 0;
+      writeImage(filename, response.body);
+    }
   } catch {
+    let dupname = start;
+    writeDup(start, lastImage);
     start = 0;
-    writeImage(filename + "." + dup, lastImage);
-    dup++;
   }
 
   if (count++ > 1000000) {
