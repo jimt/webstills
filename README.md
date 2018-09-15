@@ -5,12 +5,18 @@ webcam still images and save them to the current directory.
 
 ## Use
 
-`node {-t nnn} URL`
+```
+node [options] URL
 
-where `nnn` is the fetch interval (default 5000).
+  -i nnn, --interval nnn    mS between fetches [default: 5000]
+  -m, --mxf                 rename files to MXF creation time
+  -v, --verbose             show filenames as they are written
+  -h, --help                show this help
+```
 
 If URL ends in a `=` an incrementing integer is appended
 to it for each fetch in an attempt to avoid aggressive
 request caching.
 
-Files are named for the number of mS past the epoch when the fetch started.
+By default, files are named for the number of mS past the
+epoch when the fetch started.
