@@ -6,7 +6,7 @@ webcam still images and save them to the current directory.
 ## Use
 
 ```
-node [options] URL
+node dist/index.js [options] URL
 
   -i nnn, --interval nnn    mS between fetches [default: 5000]
   -m, --mxf                 rename files to MXF creation time
